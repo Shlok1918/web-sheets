@@ -1,6 +1,6 @@
 # Web-Sheets 📊  
 A lightweight, browser-based spreadsheet app inspired by modern tools.  
-**Live-Link**: https://github.com/Shlok1918/web-sheets/settings/pages
+**Live-Link**: https://shlok1918.github.io/web-sheets/
 
 ## 🚀 Demo  
 ![image](https://github.com/user-attachments/assets/8186cf5f-5238-46c7-b130-25a7c95b29e3)
