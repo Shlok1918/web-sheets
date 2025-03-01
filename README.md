@@ -2,8 +2,8 @@
 A lightweight, browser-based spreadsheet app inspired by modern tools.  
 
 ## 🚀 Demo  
-![image](https://github.com/user-attachments/assets/f08f0a83-890d-4921-90b2-358b97b2caf5)
- 
+![image](https://github.com/user-attachments/assets/8186cf5f-5238-46c7-b130-25a7c95b29e3)
+
 
 ## ✨ Features  
 - **Grid Navigation**: Arrow keys/Tab in a 30x20 expandable grid  
