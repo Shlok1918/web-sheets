@@ -1,0 +1,504 @@
+:root {
+    --primary-color: #4285f4;
+    --primary-dark: #3367d6;
+    --border-color: #e0e0e0;
+    --header-bg: #f8f9fa;
+    --selected-bg: #e8f0fe;
+    --hover-bg: #f1f3f4;
+    --toolbar-height: 46px;
+    --formula-bar-height: 32px;
+    --header-height: 28px;
+    --cell-width: 100px;
+    --cell-height: 28px;
+    --row-header-width: 40px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.15);
+    --radius: 4px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #f9f9f9;
+    color: #202124;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 64px);
+    width: 100vw;
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Header styling */
+.header {
+    display: flex;
+    padding: 0 16px;
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    height: 64px;
+    box-shadow: var(--shadow-sm);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: #5f6368;
+    gap: 12px;
+}
+
+.header button.menu-item {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 8px 16px;
+    color: #5f6368;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+.header button.menu-item:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+/* Toolbar styling */
+.toolbar {
+    height: var(--toolbar-height);
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+}
+
+.toolbar-button {
+    background: none;
+    border: 1px solid transparent;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-right: 8px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: #5f6368;
+    transition: all 0.2s ease;
+}
+
+.toolbar-button:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--border-color);
+}
+
+#reset-btn {
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+}
+
+#reset-btn:hover {
+    background-color: #f1f3f4;
+}
+
+#bold-btn, #italic-btn {
+    font-weight: bold;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#italic-btn {
+    font-style: italic;
+}
+
+.toolbar-separator {
+    height: 24px;
+    width: 1px;
+    background-color: var(--border-color);
+    margin: 0 12px;
+}
+
+.toolbar-select {
+    padding: 6px 8px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    margin-right: 8px;
+    font-size: 14px;
+    color: #5f6368;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toolbar-select:hover {
+    border-color: #bdc1c6;
+}
+
+.toolbar-select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+#font-color, #bg-color {
+    width: 32px;
+    height: 32px;
+    padding: 2px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+#add-row-btn, #add-column-btn {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    color: #5f6368;
+    font-weight: 500;
+}
+
+#add-row-btn:hover, #add-column-btn:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+/* Formula bar styling */
+.formula-bar {
+    height: var(--formula-bar-height);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 16px;
+    background-color: white;
+}
+
+.formula-bar label {
+    margin-right: 12px;
+    font-weight: 500;
+    color: #5f6368;
+    font-size: 16px;
+}
+
+.formula-bar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    height: 100%;
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+/* Sheet container styling */
+.sheet-container {
+    flex-grow: 1;
+    overflow: auto;
+    position: relative;
+    background-color: #f1f3f4;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+    margin: 8px;
+}
+
+/* Column headers styling */
+.column-headers {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--header-bg);
+}
+
+.row-column-corner {
+    min-width: var(--row-header-width);
+    width: var(--row-header-width);
+    height: var(--header-height);
+    background-color: var(--header-bg);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    box-sizing: border-box;
+    color: transparent;
+    user-select: none;
+    display: block;
+}
+
+.column-header {
+    min-width: var(--cell-width);
+    height: var(--header-height);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    user-select: none;
+    position: relative;
+    background-color: var(--header-bg);
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.column-header:hover {
+    background-color: #e8eaed;
+}
+
+.column-resize-handle {
+    position: absolute;
+    right: -3px;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 10;
+}
+
+/* Row styling */
+.row {
+    display: flex;
+}
+
+.row-header {
+    min-width: var(--row-header-width);
+    max-width: var(--row-header-width);
+    height: var(--cell-height);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--header-bg);
+    font-weight: 500;
+    user-select: none;
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.row-header:hover {
+    background-color: #e8eaed;
+}
+
+.row-resize-handle {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    cursor: row-resize;
+    z-index: 10;
+}
+
+/* Cell styling */
+.cell {
+    min-width: var(--cell-width);
+    min-height: var(--cell-height);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 4px 8px;
+    outline: none;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    transition: background-color 0.1s ease;
+}
+
+.cell.selected {
+    background-color: var(--selected-bg);
+    border: 2px solid var(--primary-color);
+    z-index: 2;
+}
+
+.cell:not(.selected):hover {
+    background-color: var(--hover-bg);
+}
+
+/* Status bar styling */
+.status-bar {
+    height: 30px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background-color: var(--header-bg);
+    color: #5f6368;
+    font-size: 13px;
+}
+
+/* Context menu styling */
+.context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    z-index: 100;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.context-menu-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #3c4043;
+    transition: background-color 0.1s ease;
+}
+
+.context-menu-item:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+/* Font styling classes */
+.font-bold {
+    font-weight: bold;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+/* Add a subtle animation for cell selection */
+@keyframes select-cell {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+.cell.selected {
+    animation: select-cell 0.2s ease-out;
+}
+
+/* Add a subtle border to the whole app */
+.app-container {
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+
+.drag-handle {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: #1a73e8;
+    cursor: crosshair;
+    z-index: 2;
+}
+
+.drag-highlight {
+    position: absolute;
+    background-color: rgba(26, 115, 232, 0.1);
+    border: 2px solid #1a73e8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+/* Chart Styles */
+/* Updated Chart Styles */
+.chart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.chart-dialog {
+    position: absolute;
+    background: white;
+    padding: 1rem;
+    width: 500px;
+    min-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    resize: both;
+    overflow: auto;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: move;
+    user-select: none;
+}
+
+.chart-controls {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    padding: 8px;
+}
+
+.chart-window {
+    position: absolute;
+    background: white;
+    padding: 1rem;
+    width: 500px;
+    min-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    resize: both;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 1rem;
+}
+
+/* Add these CSS rules */
+.chart-dialog {
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* 80% of viewport height */
+    max-height: 600px;
+    overflow: hidden;
+}
+
+#chart-container {
+    flex: 1;
+    min-height: 300px;
+    max-height: calc(100% - 120px); /* Account for header and controls */
+    width: 100% !important; /* Important to override Chart.js inline styles */
+    height: auto !important;
+}
+
+.chart-controls {
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}

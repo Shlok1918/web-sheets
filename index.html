@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="assets/accounting.gif" alt="Sheets logo" style="width: 50px; height: 50px;">
+            Web-Sheets
+        </div>
+
+        <button id="export-csv" class="menu-item">Export CSV</button>
+        <input type="file" id="import-csv" accept=".csv" style="display: none;">
+        <button id="import-csv-btn" class="menu-item">Import CSV</button>
+
+        <button id="create-chart" class="toolbar-button">Insert Chart</button>
+    </div>
+
+    <div class="app-container">
+        <div class="toolbar">
+            <button id="reset-btn" class="toolbar-button">Reset</button>
+            <div class="toolbar-separator"></div>
+            <select id="font-family" class="toolbar-select">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Verdana">Verdana</option>
+            </select>
+            <select id="font-size" class="toolbar-select">
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12" selected>12</option>
+                <option value="14">14</option>
+                <option value="16">16</option>
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24">24</option>
+            </select>
+            <div class="toolbar-separator"></div>
+            <button id="bold-btn" class="toolbar-button">B</button>
+            <button id="italic-btn" class="toolbar-button">I</button>
+            <input type="color" id="font-color" class="toolbar-button" value="#000000">
+            <input type="color" id="bg-color" class="toolbar-button" value="#ffffff">
+            <div class="toolbar-separator"></div>
+            <button id="add-row-btn" class="toolbar-button">Add Row</button>
+            <button id="add-column-btn" class="toolbar-button">Add Column</button>
+        </div>
+        <div class="formula-bar">
+            <label>fx</label>
+            <input type="text" id="formula-input" placeholder="Enter formula or value">
+        </div>
+        <div class="sheet-container">
+            <div class="grid-container" id="grid-container">
+                <div class="column-headers" id="column-headers">
+                    <div class="row-column-corner"></div>
+                </div>
+            </div>
+        </div>
+        <div class="status-bar">
+            <span id="cell-position">A1</span>
+        </div>
+    </div>
+
+    
+    <!-- Chart Container -->
+    <div id="chart-modal" class="chart-modal">
+        <div class="chart-dialog">
+            <div class="chart-header">
+                <h3>Create Chart</h3>
+                <button id="close-chart">&times;</button>
+            </div>
+            <div class="chart-controls">
+                <select id="chart-type">
+                    <option value="line">Line Chart</option>
+                    <option value="bar">Bar Chart</option>
+                    <option value="pie">Pie Chart</option>
+                </select>
+                <input type="text" id="data-range" placeholder="Data Range (e.g., A1:B10)">
+                <button id="generate-chart">Generate Chart</button>
+            </div>
+            <canvas id="chart-container"></canvas>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
